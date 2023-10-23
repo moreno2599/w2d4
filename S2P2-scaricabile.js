@@ -33,7 +33,7 @@ const amy = {
   isAmbassador: false,
 }
 
-const prices = [34, 5, 2 ,111]
+const prices = [34, 5, 2 ,100]
 const shippingCost = 50
 let utenteCheEffettuaLAcquisto = amy //cambia il valore qui per provare se il tuo algoritmo funziona!
 
@@ -51,25 +51,27 @@ for(i=0; i<utenti.length; i++){
 
 
 
-let totalecarrello= prices[0] + prices[1] + prices[2] 
+let totalecarrello= prices[0] + prices[1] + prices[2] + prices[3]
 let sconto = totalecarrello / 100 *30;
 
-let prezzomin = totalecarrello + shippingCost
+let prezzomin = totalecarrello + shippingCost;
 
+let scontofinale = totalecarrello - sconto; 
 
+let prez = scontofinale + shippingCost;
 
 for(i=0; i<utenti.length; i++){
 
 
 
-   if(utenti[i].isAmbassador === true & totalecarrello>100){
-    console.log(utenti[i].name + " ha diritto allo sconto del 30%, il totale da pagare scontato è "  + sconto)
+   if(utenti[i].isAmbassador === true && totalecarrello>100){
+    console.log(utenti[i].name + " ha diritto allo sconto del 30%, il totale da pagare scontato, senza costi di spedizione è "  + scontofinale)
    
   
    
-   } else if(utenti[i].isAmbassador === false & totalecarrello>100){
-             console.log(utenti[i].name + " non ha diritto allo sconto")
-             console.log(utenti[i].name + " non paga la spedizione, per un totale da pagare di " + totalecarrello )
+   } else if(utenti[i].isAmbassador === false && totalecarrello>100){
+             console.log(utenti[i].name + " non ha diritto allo sconto, non paga la spedizione, per un totale da pagare di "  + totalecarrello )
+
    }
 
    
@@ -82,13 +84,13 @@ for(i=0; i<utenti.length; i++){
 
 
    if(utenti[i].isAmbassador === true & totalecarrello<100 ){
-    console.log(utenti[i].name + " ha diritto allo sconto del 30%, il totale del carrello scontato è "  + sconto)
-   console.log(utenti[i].name + " paga la spedizione di 50 il totale da pagare è " + prezzomin )
+    console.log(utenti[i].name + " ha diritto allo sconto del 30%, il totale del carrello scontato è "  + scontofinale)
+   console.log(utenti[i].name + " paga la spedizione di 50 il totale da pagare è " + prez )
   
    
    } else if(utenti[i].isAmbassador === false & totalecarrello<100){
-             console.log(utenti[i].name + " non ha diritto allo sconto")
-             console.log(utenti[i].name + " paga la spedizione di 50 per un totale da pagare di " +prezzomin)
+             console.log(utenti[i].name + " non ha diritto allo sconto del 30%, il totale del carrello è " + totalecarrello)
+             console.log(utenti[i].name + " paga la spedizione di 50 per un totale da pagare di " + prezzomin)
    }
 
 }
